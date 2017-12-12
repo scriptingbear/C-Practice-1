@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //write some text and keep the console window open until the user presses a key
+            //System.Console.WriteLine("Press any key...");
+            //System.Console.ReadKey();
+
+            //experiment with formatting numbers
+            /*int myInt = 3456;
+            long myLong = 5566778;
+            System.Console.WriteLine("myInt: {0,10:00000}, myLong: {1,-20:#,###.00000}", myInt, myLong);
+            System.Console.ReadKey();
+          
+            double myDouble;
+            System.Console.WriteLine("Enter a valid number:\n");
+            try
+            {
+                myDouble = double.Parse(System.Console.ReadLine());
+            }
+            catch
+            {
+                System.Console.WriteLine("Invalid input.");
+                System.Console.ReadKey();
+                return;
+            }
+
+            System.Console.WriteLine("The formatted number is {0:#,##0.0000}", myDouble);
+            System.Console.ReadKey();
+            */
+
+            /*prompt user for numeric values until an empty string is entered
+              put values into an array and report number of items entered and the largerst and smallest values
+             *Allow both numeric and non numeric values in List object
+             */
+            int val;
+            string input;
+            List<object> items = new List<object>();
+
+            Console.WriteLine("Welcome to the number counting program!\nPlease enter values or an empty string to stop.");
+            do {
+                Console.Write("Enter next value: ");
+               input = Console.ReadLine();
+               input.Trim();
+               if (input=="") {
+                   Console.WriteLine("User has no more values to enter. Press any key.");
+                   Console.ReadKey();
+                   break;
+               }
+
+               if (int.TryParse(input, out val))
+               {
+                   //put numeric value into List
+                   items.Add(Int32.Parse(input));
+               }
+               else
+               {
+                   //value isn't numeric so just add it to List
+                   items.Add(input);
+               }
+          
+            } while (items.Count < 10); //do
+                
+            
+            if (items.Count > 0)
+            {
+                Console.WriteLine("User entered {0} items: {1} numbers and {2} strings. Press any key.", 
+                    items.Count(), items.OfType<int>().Count(), items.OfType<string>().Count());
+                Console.ReadKey();
+            }
+            
+        }
+    }
+}
